@@ -2,9 +2,9 @@
 # A simple variable example
 login="guily-22"
 remoteFolder="/tmp/$login/"
-fileName="FileWriteServerProgram"
+fileName="ShuffleServerProgram"
 fileExtension=".py"
-computers=("tp-3a209-10.enst.fr")
+computers=("tp-3a209-10.enst.fr tp-1a201-04.enst.fr tp-1a201-06.enst.fr")
 #computers=("tp-1a226-01")
 for c in ${computers[@]}; do
   command0=("ssh" "$login@$c" "lsof -ti | xargs kill -9")

@@ -10,6 +10,7 @@ from obj.MyServer import PrincipalServer
 
 def get_data_to_map(server: PrincipalServer):
     data_to_map = server.client.recv_msg()
+    logging.info("Preparing data for mapping ...")
     server.set_data_to_map(data_to_map)
 
 def init(addr, port):

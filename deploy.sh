@@ -5,7 +5,8 @@ remoteFolder="/tmp/$login/"
 fileName="ShuffleServerProgram"
 fileExtension=".py"
 objFolderName="obj"
-computers=("tp-3a209-10.enst.fr tp-1a201-04.enst.fr tp-1a201-06.enst.fr tp-1a207-23.enst.fr tp-1a207-24.enst.fr tp-1a207-25.enst.fr")
+# computers=("tp-3a209-10.enst.fr tp-1a201-04.enst.fr tp-1a207-23.enst.fr tp-1a207-24.enst.fr tp-1a207-25.enst.fr")
+computers=("tp-3a209-10.enst.fr tp-1a201-04.enst.fr tp-1a207-23.enst.fr tp-1a207-24.enst.fr")
 #computers=("tp-1a226-01")
 for c in ${computers[@]}; do
   command0=("ssh" "$login@$c" "lsof -ti | xargs kill -9")

@@ -1,12 +1,16 @@
 from collections import Counter
-import re, time
+import re, time, sys
+
+
 start = time.time()
+data = b""
+for i in range(int(sys.argv[1])):
+    f = open(f'samples/CC-MAIN-20220924151538-20220924181538-0000{i}.warc.wet', 'rb')
+    data += f.read()
 
-f = open('samples/CC-MAIN-20220924151538-20220924181538-00000.warc.wet', 'r')
-text = f.read()
+data = re.findall(r'[A-Za-z]+', data.decode('utf-8'))
+dico = Counter(data)
 
-words = re.findall(r'[A-Za-z]+', text)
-dico = Counter(words)
 
 f.close()
 

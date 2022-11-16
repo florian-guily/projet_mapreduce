@@ -71,6 +71,12 @@ class NeighbourServer(Server):
             if data == "OK":
                 break
             self.recvd_data = data
+
+    def send_split(self):
+        with open(f'samples/CC-MAIN-20220924151538-20220924181538-0000{self.id}.warc.wet', 'rb') as f:
+        # with open(f'sample1.txt', 'r') as f:
+            data = f.read()
+        self.send_msg(data)
     
     def send_data_to_shuffle(self):
         self.send_msg(self.data_to_shuffle)
@@ -112,14 +118,14 @@ class PrincipalServer(Server):
         self.id = id
 
     def set_data_to_map(self, data):
-        data_to_map = ""
-        for line in data:
-            data_to_map += line
-        data_to_map.replace('\n', ' ')
-        self.data_to_map = data_to_map
+        # data_to_map = ""
+        # for line in data:
+        #     data_to_map += line
+        # data_to_map.replace('\n', ' ')
+        self.data_to_map = data
 
     def map_data(self):
-        words = re.findall(r'[A-Za-z]+', self.data_to_map)
+        words = re.findall(r'[A-Za-z]+', self.data_to_map.decode("utf-8"))
         dico = Counter(words)
         self.mapped_data = dict(dico)
 

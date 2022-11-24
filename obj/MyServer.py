@@ -125,7 +125,7 @@ class PrincipalServer(Server):
         self.data_to_map = data
 
     def map_data(self):
-        words = re.findall(r'[A-Za-z]+', self.data_to_map.decode("utf-8"))
+        words = re.findall(r'[A-Za-z]+', self.data_to_map)
         dico = Counter(words)
         self.mapped_data = dict(dico)
 

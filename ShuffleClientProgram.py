@@ -9,7 +9,6 @@ if __name__ == '__main__':
                         datefmt="%H:%M:%S")
     main_start = time.time()
     HOSTS = ["tp-3a209-10.enst.fr", "tp-1a201-04.enst.fr", "tp-1a207-23.enst.fr", "tp-1a207-24.enst.fr", "tp-1a207-25.enst.fr", "tp-1a201-14.enst.fr", "tp-1a201-18.enst.fr",  "tp-1a201-22.enst.fr",  "tp-1a201-23.enst.fr",  "tp-1a201-27.enst.fr"]  # The server's hostname or IP address
-    # HOSTS = ["tp-3a209-10.enst.fr", "tp-1a201-04.enst.fr", "tp-1a207-23.enst.fr"]#, "tp-1a207-24.enst.fr"]
     PORT = 64998  # The port used by the server
     server = PrincipalServer(None, "localhost", PORT, -1)
 
@@ -32,21 +31,7 @@ if __name__ == '__main__':
             next = f.read(1)
         neighbour.send_thread = threading.Thread(target=neighbour.alternative_send_msg, args=(data,))
         neighbour.send_thread.start()
-
-    # chunk_size = len(data)//len(HOSTS)
-    # start = time.time()
-    # logging.info("Sending data to servers...")
-    # for neighbour in server.neighbours.values():
-    #     id = neighbour.id
-    #     neighbour.send_msg(id)
-    #     # neighbour.send_thread = threading.Thread(target=neighbour.send_split)
-    #     # neighbour.send_thread.start()
-    #     if id == len(HOSTS):
-    #         neighbour.send_thread = threading.Thread(target=neighbour.alternative_send_msg, args=(data[(id)*chunk_size:],))
-    #         neighbour.send_thread.start()
-    #     else :
-    #         neighbour.send_thread = threading.Thread(target=neighbour.alternative_send_msg, args=(data[(id)*chunk_size:(id+1)*chunk_size],))
-    #         neighbour.send_thread.start()
+        
     logging.info(f"Started send thread for server {neighbour.id} ")
     server.stop_send_neighbours()
     duration = time.time() - start

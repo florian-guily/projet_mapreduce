@@ -56,28 +56,18 @@ if __name__ == '__main__':
     duration = time.time() - start
     logging.info(f"[{server.id}] Finished mapping phase in {duration} seconds.")
 
-    # logging.info(f"[{server.id}] Mapped data : {server.mapped_data}")
-    # for key in server.mapped_data:
-    #     logging.info(f"[{server.id}] Hash for key {key}: {server.myHash(key)}")
-    #     logging.info(f"[{server.id}] Server to send {key}: {server.myHash(key)%len(server_list)}")
-
-    # shuffle_thread = threading.Thread(target=server.shuffle, args=(len(server_list),))
-
     start = time.time()
     logging.info(f"[{server.id}] Started shuffling phase...")
-    # shuffle_thread.start()
+
     server.local_shuffle(len(server_list))
     server.start_send_neighbours()
     server.start_recv_neighbours()
     server.stop_recv_neighbours()
     server.stop_send_neighbours()
 
-    # shuffle_thread.join()
     duration = time.time() - start
     logging.info(f"[{server.id}] Finished shuffling phase in {duration}.")
 
-    # for id, neighbour in server.neighbours.items():
-    #     logging.info(f"[{server.id}] Data shuffled from server {id}: {neighbour.recvd_data}")
     start = time.time()
     logging.info(f"[{server.id}] Started reduce phase...")
     server.reduce()
